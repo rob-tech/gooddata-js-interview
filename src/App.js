@@ -10,6 +10,103 @@ const dateAttributeInMonths = '/gdc/md/xms7ga4tf3g3nzucd8380o2bev8oeknp/obj/2142
 const dateAttribute = '/gdc/md/xms7ga4tf3g3nzucd8380o2bev8oeknp/obj/2180';
 
 class App extends Component {
+    state = { from: "2016-01-01", to: "2016-01-31" };
+
+
+    handleChange = (event) => {
+        let from;
+        let to;
+
+        this.setState({
+            value: event.target.value
+        });
+
+        switch (event.target.value) {
+            case "1":
+
+                from = '2016-01-01';
+                to = '2016-01-31';
+
+                break;
+            case "2":
+
+                from = '2016-02-01';
+                to = '2016-02-29';
+
+                break;
+            case "3":
+
+                from = '2016-03-01';
+                to = '2016-03-31';
+
+                break;
+            case "4":
+
+                from = '2016-04-01';
+                to = '2016-04-30';
+
+                break;
+            case "5":
+
+                from = '2016-05-01';
+                to = '2016-05-31';
+
+                break;
+            case "6":
+
+                from = '2016-06-01';
+                to = '2016-06-30';
+
+                break;
+            case "7":
+                from = '2016-07-01';
+                to = '2016-07-31';
+
+                break;
+            case "8":
+
+                from = '2016-08-01';
+                to = '2016-08-31';
+
+                break;
+            case "9":
+
+                from = '2016-09-01';
+                to = '2016-09-30';
+
+                break;
+            case "10":
+
+                from = '2016-10-01';
+                to = '2016-10-31';
+
+                break;
+            case "11":
+
+                from = '2016-11-01';
+                to = '2016-11-30';
+
+                break;
+            case "12":
+
+                from = '2016-12-01';
+                to = '2016-12-31';
+
+                break;
+            default:
+                from = '2016-01-01';
+                to = '2016-01-31';
+                break;
+
+        }
+        this.setState({
+            from: from,
+            to: to
+        })
+    }
+
+
+
 
     getMonthFilter() {
         return {
@@ -17,9 +114,9 @@ class App extends Component {
                 dataSet: {
                     uri: dateAttribute
                 },
-                from: '2016-01-01',
-                to: '2016-01-31'
-            }
+                from: this.state.from,
+                to: this.state.to
+            },
 
         }
     }
@@ -56,7 +153,7 @@ class App extends Component {
 
     renderDropdown() {
         return (
-            <select defaultValue="1">
+            <select defaultValue="1" value={this.state.value} onChange={this.handleChange}>
                 <option value="1">January</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -70,6 +167,7 @@ class App extends Component {
                 <option value="11">November</option>
                 <option value="12">December</option>
             </select>
+
         )
     }
 
