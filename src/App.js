@@ -4,101 +4,24 @@ import React, { Component } from 'react';
 import '@gooddata/react-components/styles/css/main.css';
 
 import { ColumnChart } from '@gooddata/react-components';
+import { format } from 'url';
 
 const grossProfitMeasure = '/gdc/md/xms7ga4tf3g3nzucd8380o2bev8oeknp/obj/6877';
 const dateAttributeInMonths = '/gdc/md/xms7ga4tf3g3nzucd8380o2bev8oeknp/obj/2142';
 const dateAttribute = '/gdc/md/xms7ga4tf3g3nzucd8380o2bev8oeknp/obj/2180';
 
 class App extends Component {
-    state = { from: "2016-01-01", to: "2016-01-31" };
+    state = { from: "2016-01-01", to: "2016-01-31"};
 
 
     handleChange = (event) => {
-        let from;
-        let to;
+        let year = 2016;
+        let value = event.target.value
+        value = parseInt(value)
 
-        this.setState({
-            value: event.target.value
-        });
+        let from = new Date(year, value - 1, 2).toISOString().slice(0, 10)
+        let to = new Date(year, value, 1).toISOString().slice(0, 10)
 
-        switch (event.target.value) {
-            case "1":
-
-                from = '2016-01-01';
-                to = '2016-01-31';
-
-                break;
-            case "2":
-
-                from = '2016-02-01';
-                to = '2016-02-29';
-
-                break;
-            case "3":
-
-                from = '2016-03-01';
-                to = '2016-03-31';
-
-                break;
-            case "4":
-
-                from = '2016-04-01';
-                to = '2016-04-30';
-
-                break;
-            case "5":
-
-                from = '2016-05-01';
-                to = '2016-05-31';
-
-                break;
-            case "6":
-
-                from = '2016-06-01';
-                to = '2016-06-30';
-
-                break;
-            case "7":
-                from = '2016-07-01';
-                to = '2016-07-31';
-
-                break;
-            case "8":
-
-                from = '2016-08-01';
-                to = '2016-08-31';
-
-                break;
-            case "9":
-
-                from = '2016-09-01';
-                to = '2016-09-30';
-
-                break;
-            case "10":
-
-                from = '2016-10-01';
-                to = '2016-10-31';
-
-                break;
-            case "11":
-
-                from = '2016-11-01';
-                to = '2016-11-30';
-
-                break;
-            case "12":
-
-                from = '2016-12-01';
-                to = '2016-12-31';
-
-                break;
-            default:
-                from = '2016-01-01';
-                to = '2016-01-31';
-                break;
-
-        }
         this.setState({
             from: from,
             to: to
